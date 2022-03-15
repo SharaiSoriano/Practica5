@@ -1,0 +1,64 @@
+ class cuenta {
+    private int nip;
+    private long numcuenta;
+    private float venci; //fecha de vencimiento
+    private String nombre;
+    private float saldo;
+    private String direccion;
+
+    public int getNip( ){
+        return this.nip;
+    }
+     
+    public void setNip(String nip){
+        this.nip = nip;
+    }
+
+    public long getNumcuenta( ){
+        return this.numcuenta;
+    }
+     
+    public void setNumcuenta(String numcuenta){
+        this.numcuenta = numcuenta;
+    }
+
+    public float getVenci( ){
+        return this.venci;
+    }
+     
+    public void setVenci(String venci){
+        this.venci = venci;
+    }
+
+     public String getNombre( ){
+        return this.nombre;
+    }
+     
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+    
+    public float getSaldo( ){
+        return this.saldo;
+    }
+     
+    public void setSaldo(String saldo){
+        this.saldo = saldo;
+    }
+
+    public String getDireccion( ){
+        return this.direccion;
+    }
+     
+    public void setDireccion(String direccion){
+        this.direccion = direccion;
+    } 
+
+}
+
+
+public void ComprobarDatos(int nip, long numcuenta){
+
+}
+
+    
