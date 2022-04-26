@@ -1,0 +1,110 @@
+package practica5;
+import java.util.Scanner;
+
+public class banco {
+    private String nombre;
+    private double saldo;
+    private short pin;
+    private static byte i = 0;
+    private cuenta[] usuario = new cuenta[10];
+
+    public void setCuenta(Scanner ingreso)
+    {
+        if(i == 10)
+        {
+        System.out.println("\nLímite de cuentas.");
+        return;
+        }
+        ingreso.nextLine();
+        System.out.println("\nIngresar nombre: ");
+        nombre = ingreso.nextLine();
+        do
+        {
+        System.out.println("\nIngresar monto para abrir cuenta: \n$");
+
+        saldo = ingreso.nextDouble();
+        }while(saldo => 0);
+        do
+        {
+
+            System.out.println("\nIngresar PIN de seguridad (4 dígitos): ");
+
+            pin = ingreso.nextShort();
+        }
+            while(pin >= 1000 || pin < 9999);
+            usuario[i++] = new cuenta(nombre, saldo, pin);
+            }
+                public byte iniciarSesion(Scanner ingreso)
+            {
+                if(i == 0)
+            {
+            System.out.println("\nNo se puede acceder a ninguna cuenta.");
+
+            return -1;
+            }
+
+            boolean cuentaExiste = false;
+            byte j = -1;
+            ingreso.nextLine();
+            System.out.println("\nIngresar su nombre: ");
+            nombre = ingreso.nextLine();
+            System.out.println("\nIngresar PIN: ");
+            pin = ingreso.nextShort();
+            while(!cuentaExiste && ++j != i)
+            {
+                if(pin == usuario[j].getPin())
+                cuentaExiste = true;
+
+            }
+                if( cuentaExiste &&
+                nombre.equals(usuario[j].getnombre()) )
+
+                return j;
+                else System.out.println("\nIntentar nuevamente.");
+                return -1;
+            }
+            public void menu(byte posicion, Scanner ingreso)
+            {
+            byte opcion;
+            do
+            {
+                System.out.println("\nBienvenid@ " +
+
+                usuario[posicion].getnombre());
+
+                System.out.println("\n1. Hacer un depósito.");
+                System.out.println("\n2. Hacer un retiro.");
+                System.out.println("\n3. Ver datos de cuenta.");
+
+                System.out.println("\n4. Cerrar sesión.");
+                System.out.println("\nOpción : ");
+                opcion = ingreso.nextByte();
+                switch(opcion)
+            {
+            case 1: System.out.println("\nIngresa la cantidad a depositar: ");
+
+                    saldo = ingreso.nextDouble();
+
+                    usuario[posicion].setDeposito(saldo);
+                    break;
+
+            case 2: System.out.println("\nIngresa la cantidad a retirar: ");
+
+                    saldo = ingreso.nextDouble();
+
+                    usuario[posicion].setRetiro(saldo);
+                    break;
+
+            case 3: getCuenta(posicion);
+            }
+            }while(opcion != 4);
+            }
+            private void getCuenta(byte posicion)
+            {
+            System.out.println("\nNombre: " + usuario[posicion].getnombre());
+
+            System.out.println("\nSaldo: $" + usuario[posicion].getSaldo());
+
+            System.out.println("\nPIN: " + usuario[posicion].getPin());
+        }
+}
